@@ -1,5 +1,6 @@
 import React, {useState, KeyboardEvent, ChangeEvent} from 'react';
 import {FilterValuesType} from "./App";
+import {AddItemForm} from "./AddItem/AddItem";
 //rsc
 type TodoListPropsType = {
     todoListId: string
@@ -21,8 +22,10 @@ export type TaskType = {
 
 
 const TodoList = (props: TodoListPropsType) => {
-    const [title, setTitle] = useState<string>("")
-    const [error, setError] = useState<boolean>(false)
+    const addTask = (title:string) => {
+        props.addTask(title,props.todoListId)
+    }
+
     const getTasksListItem = (t: TaskType )=> {
         const removeTask = () => props.removeTask(t.id, props.todoListId)
         const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>)=>props.changeTaskStatus(t.id, e.currentTarget.checked, props.todoListId)
@@ -42,23 +45,10 @@ const TodoList = (props: TodoListPropsType) => {
         ? <ul>{props.tasks.map(getTasksListItem)}</ul>
         : <span>Your taskslist is empty :(</span>
 
-    const addTask = () => {
-        const trimmedTitle = title.trim()
-        if(trimmedTitle !== ""){
-            props.addTask(trimmedTitle, props.todoListId)
-        } else {
-            setError(true)
-        }
-        setTitle("")
-    }
     const handlerCreator = (filter: FilterValuesType) => () => props.changeTodoListFilter(filter, props.todoListId)
-    const onEnterDownAddTask = (e: KeyboardEvent<HTMLInputElement>)=> e.key === "Enter" && addTask()
-    const onChangeSetLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
-        error && setError(false)
-        setTitle(e.currentTarget.value)
-    }
+
     const removeTodoList = () => props.removeTodoList(props.todoListId)
-    const errorMessage = error ? <div style={{fontWeight: "bold", color: "hotpink"}}>Title is required!</div> : null
+
     return (
         <div>
             <h3>
@@ -66,15 +56,7 @@ const TodoList = (props: TodoListPropsType) => {
                 <button onClick={removeTodoList}>x</button>
             </h3>
             <div>
-                <input
-                    value={title}
-                    onChange={onChangeSetLocalTitle}
-                    onKeyDown={onEnterDownAddTask}
-                    className={error ? "error" : ""}
-
-                />
-                <button onClick={addTask}>+</button>
-                {errorMessage}
+              <AddItemForm addItem={addTask}/>
             </div>
                 {tasksList}
             <div>
