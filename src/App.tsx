@@ -53,7 +53,8 @@ function App() {
     })
     //D:
     const removeTask = (taskId: string, todoListId: string) => {
-        setTasks({...tasks,
+        setTasks({
+            ...tasks,
             [todoListId]: tasks[todoListId].filter((t) => t.id !== taskId)
         })
     }
@@ -64,18 +65,31 @@ function App() {
             title: title,
             isDone: false
         }
-        setTasks({...tasks,
-            [todoListId]: [newTask, ...tasks[todoListId]]})
+        setTasks({
+            ...tasks,
+            [todoListId]: [newTask, ...tasks[todoListId]]
+        })
     }
     //U:
     const changeTaskStatus = (taskId: string, newTaskStatus: boolean, todoListId: string) => {
-        setTasks({...tasks,
+        setTasks({
+            ...tasks,
             [todoListId]: tasks[todoListId].map(t => t.id === taskId
                 ? {...t, isDone: newTaskStatus}
                 : t)
         })
     }
 
+
+    const changeTaskTitle = (taskId: string, title: string, todoListId: string) => {
+        setTasks({
+            ...tasks,
+            [todoListId]: tasks[todoListId].map(t => t.id === taskId
+                ? {...t, title: title}
+                : t)
+        })
+
+    }
     //D:
     const removeTodoList = (todoListId: string) => {
         setTodoLists(todoLists.filter(tl => tl.id !== todoListId))
@@ -83,11 +97,15 @@ function App() {
     }
     //U:
     const changeTodoListFilter = (filter: FilterValuesType, todoListId: string) => {
-        setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, filter: filter}: tl))
+        setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, filter: filter} : tl))
+    }
+
+    const changeTodoListTitle = (title: string, todoListId: string) => {
+        setTodoLists(todoLists.map(tl => tl.id === todoListId ? {...tl, title: title} : tl))
     }
     //C:
     const addTodoList = (title: string) => {
-       const newTodoListId: string = v1()
+        const newTodoListId: string = v1()
         const newTodoList: TodoListType = {
             id: newTodoListId,
             title: title,
@@ -124,11 +142,12 @@ function App() {
                 removeTodoList={removeTodoList}
                 changeTaskStatus={changeTaskStatus}
                 changeTodoListFilter={changeTodoListFilter}
-
-
+                changeTaskTitle={changeTaskTitle}
+                changeTodoListTitle={changeTodoListTitle}
             />
         )
     })
+
 
     return (
         <div className="App">
