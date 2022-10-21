@@ -20,11 +20,7 @@ export type TaskType = {
     isDone: boolean
 }
 
-
 const TodoList = (props: TodoListPropsType) => {
-    const addTask = (title:string) => {
-        props.addTask(title,props.todoListId)
-    }
 
     const getTasksListItem = (t: TaskType )=> {
         const removeTask = () => props.removeTask(t.id, props.todoListId)
@@ -37,6 +33,7 @@ const TodoList = (props: TodoListPropsType) => {
                     checked={t.isDone}
                 />
                 <span>{t.title}</span>
+                
                 <button onClick={removeTask}>x</button>
             </li>
         )
@@ -44,6 +41,11 @@ const TodoList = (props: TodoListPropsType) => {
     const tasksList = props.tasks.length
         ? <ul>{props.tasks.map(getTasksListItem)}</ul>
         : <span>Your taskslist is empty :(</span>
+
+
+    const addTask = (title:string) => {
+        props.addTask(title,props.todoListId)
+    }
 
     const handlerCreator = (filter: FilterValuesType) => () => props.changeTodoListFilter(filter, props.todoListId)
 

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import TodoList, {TaskType} from "./TodoList";
 import {v1} from "uuid";
+import {AddItemForm} from "./AddItem/AddItem";
 
 //data -> CRUD
 //create +
@@ -123,12 +124,15 @@ function App() {
                 removeTodoList={removeTodoList}
                 changeTaskStatus={changeTaskStatus}
                 changeTodoListFilter={changeTodoListFilter}
+
+
             />
         )
     })
 
     return (
         <div className="App">
+            <AddItemForm addItem={addTodoList}/>
             {todoListComponents}
         </div>
     );
