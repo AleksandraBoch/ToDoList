@@ -3,7 +3,9 @@ import './App.css';
 import TodoList, {TaskType} from "./TodoList";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItem/AddItem";
-
+import {AppBar, Button, IconButton, Typography, Toolbar, Container} from "@material-ui/core";
+import {Menu} from "@material-ui/icons";
+import { Paper } from '@material-ui/core';
 //data -> CRUD
 //create +
 //read (+,+,+)// filter => //sort, pagination
@@ -129,7 +131,12 @@ function App() {
 
     const todoListComponents = todoLists.map(tl => {
         const filteredTasks = getFilteredTasks(tasks[tl.id], tl.filter)
+        // @ts-ignore
         return (
+            <Paper
+            elevation={3}
+            style={{width:'300px',padding:'20px'}}
+            >
             <TodoList
                 key={tl.id}
                 title={tl.title}
@@ -145,14 +152,31 @@ function App() {
                 changeTaskTitle={changeTaskTitle}
                 changeTodoListTitle={changeTodoListTitle}
             />
+            </Paper>
         )
     })
 
 
     return (
+
         <div className="App">
+            <AppBar position="static">
+                <Toolbar style={{justifyContent: "space-between"}}>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <Menu/>
+                    </IconButton>
+                    <Typography variant="h6">
+                        Todolists
+                    </Typography>
+                    <Button color="inherit" variant={"outlined"}>Login</Button>
+                </Toolbar>
+            </AppBar>
+<Container fixed>
+
             <AddItemForm addItem={addTodoList}/>
             {todoListComponents}
+
+</Container>
         </div>
     );
 }

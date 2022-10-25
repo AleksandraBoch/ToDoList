@@ -1,37 +1,37 @@
-.App {
-  padding: 30px;
-  display: flex;
-}
+/*.App {*/
+/*  padding: 30px;*/
+/*  display: flex;*/
+/*}*/
 
-.App > div {
-  margin-right: 50px;
-}
+/*.App > div {*/
+/*  margin-right: 50px;*/
+/*}*/
 
 .isDone {
   text-decoration: line-through;
   font-weight: bold;
-  color: limegreen;
+  color: darkblue;
 }
 .notIsDone {
   font-weight: bold;
-  color: hotpink;
+  color: cornflowerblue;
 }
-.btn {
-  background-color: darkcyan;
-  padding: 3px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 3px;
-  border: none;
-  margin-right: 3px;
-}
+/*.btn {*/
+/*  background-color: darkcyan;*/
+/*  padding: 3px;*/
+/*  color: white;*/
+/*  font-weight: bold;*/
+/*  cursor: pointer;*/
+/*  border-radius: 3px;*/
+/*  border: none;*/
+/*  margin-right: 3px;*/
+/*}*/
 .active-btn {
   background-color: maroon;
   color: white;
 }
 
-.error {
-  border: 2px solid hotpink;
-  outline: none;
-}
+/*.error {*/
+/*  border: 2px solid hotpink;*/
+/*  outline: none;*/
+/*}*/
