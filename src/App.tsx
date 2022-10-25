@@ -3,7 +3,7 @@ import './App.css';
 import TodoList, {TaskType} from "./TodoList";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItem/AddItem";
-import {AppBar, Button, IconButton, Typography, Toolbar, Container} from "@material-ui/core";
+import {AppBar, Button, IconButton, Typography, Toolbar, Container, Grid} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
 import { Paper } from '@material-ui/core';
 //data -> CRUD
@@ -133,12 +133,13 @@ function App() {
         const filteredTasks = getFilteredTasks(tasks[tl.id], tl.filter)
         // @ts-ignore
         return (
+            <Grid item key={tl.id}>
             <Paper
-            elevation={3}
+            variant={'outlined'}
             style={{width:'300px',padding:'20px'}}
             >
             <TodoList
-                key={tl.id}
+
                 title={tl.title}
                 filter={tl.filter}
                 todoListId={tl.id}
@@ -153,6 +154,7 @@ function App() {
                 changeTodoListTitle={changeTodoListTitle}
             />
             </Paper>
+            </Grid>
         )
     })
 
@@ -172,9 +174,14 @@ function App() {
                 </Toolbar>
             </AppBar>
 <Container fixed>
+    <Grid container style={{padding:'20px 0'}}>
+        <AddItemForm addItem={addTodoList}/>
+    </Grid>
+<Grid container spacing={10}>
+    {todoListComponents}
+</Grid>
 
-            <AddItemForm addItem={addTodoList}/>
-            {todoListComponents}
+
 
 </Container>
         </div>
