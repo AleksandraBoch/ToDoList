@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import {IconButton, TextField} from "@material-ui/core";
 import {AddCircleOutlineOutlined} from "@material-ui/icons";
+import {red} from "@material-ui/core/colors";
 
 type AddItemPropsType = {
     addItem: (title: string) => void
@@ -37,6 +38,7 @@ return(
     <div>
 
        <TextField
+
            size={'small'}
            variant={'outlined'}
            value={title}

@@ -18,7 +18,7 @@ import { Paper } from '@material-ui/core';
 
 export type FilterValuesType = "all" | "active" | "completed"
 
-type TodoListType = {
+export type TodoListType = {
     id: string
     title: string
     filter: FilterValuesType
